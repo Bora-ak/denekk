@@ -6,21 +6,30 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.ClimbCommandDown;
+import frc.robot.commands.ClimbCommandUp;
+import frc.robot.commands.IntakeCommandIn;
+import frc.robot.commands.IntakeCommandOut;
+import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
- */
+
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  //Subsystems
+ Climb climbcik = new Climb();
+ Intake intake = new Intake();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+ //Commands
+ IntakeCommandIn ball_in = new IntakeCommandIn(intake); 
+ IntakeCommandOut ball_out = new IntakeCommandOut(intake);
+ ClimbCommandUp top_yukari = new ClimbCommandUp(climbcik);
+ ClimbCommandDown top_asagi = new ClimbCommandDown(climbcik);
+
+ //Kumanda
+ XboxController operatoryanki = new XboxController(Constants.OPERATOR_ID);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -34,7 +43,20 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    JoystickButton climbButtonUp = new JoystickButton(operatoryanki, 1);
+    climbButtonUp.whileHeld(top_yukari);
+
+    JoystickButton climbButtonDown = new JoystickButton(operatoryanki, 2);
+    climbButtonDown.whileHeld(top_asagi);
+
+    JoystickButton intakeButtonIn = new JoystickButton(operatoryanki, 3);
+    intakeButtonIn.whileHeld(ball_in);
+
+    JoystickButton intakeButtonOut = new JoystickButton(operatoryanki, 4);
+    intakeButtonOut.whileHeld(ball_out);
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -43,6 +65,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }
