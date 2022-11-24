@@ -25,8 +25,8 @@ public class RobotContainer {
  //Commands
  IntakeCommandIn ball_in = new IntakeCommandIn(intake); 
  IntakeCommandOut ball_out = new IntakeCommandOut(intake);
- ClimbCommandUp top_yukari = new ClimbCommandUp(climbcik);
- ClimbCommandDown top_asagi = new ClimbCommandDown(climbcik);
+ ClimbCommandUp yukari_tirman = new ClimbCommandUp(climbcik);
+ ClimbCommandDown asagi_in = new ClimbCommandDown(climbcik);
 
  //Kumanda
  XboxController operatoryanki = new XboxController(Constants.OPERATOR_ID);
@@ -45,10 +45,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton climbButtonUp = new JoystickButton(operatoryanki, 1);
-    climbButtonUp.whileHeld(top_yukari);
+    climbButtonUp.whileHeld(yukari_tirman);
 
     JoystickButton climbButtonDown = new JoystickButton(operatoryanki, 2);
-    climbButtonDown.whileHeld(top_asagi);
+    climbButtonDown.whileHeld(asagi_in);
 
     JoystickButton intakeButtonIn = new JoystickButton(operatoryanki, 3);
     intakeButtonIn.whileHeld(ball_in);
