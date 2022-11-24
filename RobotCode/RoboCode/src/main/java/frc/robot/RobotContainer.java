@@ -10,8 +10,10 @@ import frc.robot.commands.ClimbCommandDown;
 import frc.robot.commands.ClimbCommandUp;
 import frc.robot.commands.IntakeCommandIn;
 import frc.robot.commands.IntakeCommandOut;
+import frc.robot.commands.ShooterCommandShoot;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -21,8 +23,10 @@ public class RobotContainer {
   //Subsystems
  Climb climbcik = new Climb();
  Intake intake = new Intake();
+ Shooter shooter = new Shooter();
 
  //Commands
+ ShooterCommandShoot shooot = new ShooterCommandShoot(shooter);
  IntakeCommandIn ball_in = new IntakeCommandIn(intake); 
  IntakeCommandOut ball_out = new IntakeCommandOut(intake);
  ClimbCommandUp yukari_tirman = new ClimbCommandUp(climbcik);
@@ -44,6 +48,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton shootButton = new JoystickButton(operatoryanki, 2);
+    shootButton.whileHeld(shooot);
+/*
     JoystickButton climbButtonUp = new JoystickButton(operatoryanki, 1);
     climbButtonUp.whileHeld(yukari_tirman);
 
@@ -55,7 +62,7 @@ public class RobotContainer {
 
     JoystickButton intakeButtonOut = new JoystickButton(operatoryanki, 4);
     intakeButtonOut.whileHeld(ball_out);
-    
+    */
   }
 
   /**

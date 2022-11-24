@@ -4,14 +4,18 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
 public class ShooterCommandShoot extends CommandBase {
-  /** Creates a new ShooterCommandShoot. */
+
   Shooter shooter;
+  /** Creates a new ShooterCommandShoot. */
   public ShooterCommandShoot(Shooter shooter) {
+
     this.shooter = shooter;
+
     addRequirements(shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -23,7 +27,8 @@ public class ShooterCommandShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.shooterShoot();
+    shooter.setRPM(1500);
+    SmartDashboard.putNumber("RPM", shooter.getRPM());
   }
 
   // Called once the command ends or is interrupted.
@@ -31,6 +36,7 @@ public class ShooterCommandShoot extends CommandBase {
   public void end(boolean interrupted) {
     shooter.shootStop();
   }
+
 
   // Returns true when the command should end.
   @Override

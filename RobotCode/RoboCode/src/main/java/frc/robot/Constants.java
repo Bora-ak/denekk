@@ -17,5 +17,5 @@ public final class Constants {
     public static final int CLIMB_ID =2 ;
     public static final int INTAKEMOTOR_ID = 9;
     public static final int OPERATOR_ID = 0;
-    public static final int MASTERMOTOR_ID = 0;
-    public static final int SLAVEMOTOR_ID = 0;}
+    public static final int MASTERMOTOR_ID = 19;
+    public static final int SLAVEMOTOR_ID = 18;}
